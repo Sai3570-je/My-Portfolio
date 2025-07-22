@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio Replica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0d12;
+      --bg-main: #16181d;
+      --text-main: #e5e9f0;
+      --text-gray: #bfc6d1;
+      --text-blue: #53b0fd;
+      --text-yellow: #eac561;
+      --border-dark: #21242a;
+      --tab-bg: #282b30;
+      --accent: #eac561;
+    }
+    body {
+      margin: 0;
+      font-family: 'Fira Mono', monospace, monospace;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      height: 100vh;
+      min-height: 100vh;
+    }
+    .app-window {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      height: 44px;
+      border-bottom: 1px solid var(--border-dark);
+      position: fixed;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      padding: 0 12px;
+      box-sizing: border-box;
+      font-size: 19px;
+    }
+    .topbar .logo {
+      color: var(--text-blue);
+      font-size: 26px;
+      font-weight: bold;
+      margin-right: 20px;
+    }
+    .breadcrumb {
+      color: var(--text-gray);
+      margin-left: 14px;
+    }
+    .window-controls {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+    }
+    .window-controls span {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      border: 1px solid var(--border-dark);
+      cursor: pointer;
+    }
+    .layout {
+      display: flex;
+      flex: 1;
+      margin-top: 44px;
+    }
+    .sidebar {
+      background: var(--bg-dark);
+      width: 200px;
+      min-width: 200px;
+      border-right: 1px solid var(--border-dark);
+      padding: 25px 0 0 0;
+      display: flex; flex-direction: column;
+      height: calc(100vh - 44px);
+      position: fixed;
+      left: 0;
+      top: 44px;
+      z-index: 90;
+    }
+    .nav {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .nav li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1rem;
+      color: var(--text-main);
+      padding: 11px 0 11px 30px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.13s;
+    }
+    .nav li.active, .nav li:hover {
+      background: var(--bg-main);
+      color: var(--text-blue);
+    }
+    .nav .icon {
+      width: 18px; height: 18px;
+      display: inline-block;
+    }
+    .main-content {
+      margin-left: 200px;
+      padding: 35px 32px 32px 32px;
+      background: var(--bg-main);
+      min-height: calc(100vh - 44px);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    /* --- Home --- */
+    .home-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin: 18px 0 0 0;
+      color: var(--text-main);
+    }
+    .home-sub {
+      color: var(--text-blue);
+      font-size: 26px;
+      padding-bottom: 22px;
+    }
+    .prompt-label {
+      color: var(--text-gray);
+      margin-top: 36px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .cmd {
+      color: #ae81ff;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 6px;
+      margin-bottom: 11px;
+    }
+    .hover-get-code {
+      color: var(--text-gray);
+      font-size: 16px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .hover-get-code .dot {
+      display: inline-block;
+      width: 11px; height: 11px;
+      background: var(--text-blue);
+      border-radius: 50%;
+    }
+    .hover-tooltip {
+      display: none;
+      position: absolute;
+      top: 32px; left: 0;
+      background: #15161a;
+      color: var(--text-main);
+      border: 1px solid var(--border-dark);
+      border-radius: 7px;
+      padding: 13px 45px 13px 20px;
+      min-width: 210px;
+      box-shadow: 0px 5px 16px rgba(0,0,0,0.25);
+      font-size: 16px;
+      z-index: 20;
+    }
+    .hover-get-code:hover .hover-tooltip {
+      display: block;
+    }
+    .hover-btn {
+      color: var(--text-blue);
+      background: #191c22;
+      padding: 6px 18px;
+      margin-right: 7px;
+      border-radius: 10px;
+      border: 1px solid #222;
+      text-decoration: none;
+      transition: background 0.16s;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      display: inline-block;
+    }
+    .hover-btn:hover { background: #22242b; }
+    /* --- About --- */
+    .about-code-block {
+      background: #181b20;
+      border-radius: 8px;
+      padding: 24px 32px;
+      line-height: 1.7;
+      color: var(--text-gray);
+      font-size: 16px;
+      min-height: 310px;
+      margin-right: 350px;
+      font-family: "Fira Mono", monospace;
+      box-shadow: 0 3px 30px rgba(10,13,18,0.07);
+      position: relative;
+    }
+    .about-code-block .keyword {
+      color: var(--text-blue);
+      font-weight: 700;
+    }
+    .about-sidebar {
+      position: absolute;
+      top: 80px;
+      right: 58px;
+      width: 320px;
+      background: none;
+      color: var(--text-gray);
+      font-size: 17px;
+    }
+    .file-tree ul { list-style: none; padding-left: 18px; }
+    .file-tree li { margin: 4px 0; }
+    .file-tree .label { color: var(--accent); font-weight: bold; }
+    .file-tree .file { color: #88e066; }
+    .file-tree .skill {
+      color: #b4b8f8;
+      margin-left: 7px;
+    }
+    /* --- Experience --- */
+    .exp-header {
+      color: var(--text-gray);
+      font-size: 1.2rem;
+    }
+    .exp-note { color: #69e9ff; font-size: 1rem; }
+    .exp-list { margin: 30px 0 0 0; }
+    .exp-item {
+      display: flex;
+      align-items: flex-start;
+      background: #191c22;
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      padding: 14px 37px 15px 15px;
+      font-size: 15px;
+      color: var(--text-main);
+      gap: 17px;
+      max-width: 540px;
+    }
+    .exp-range {
+      min-width: 70px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    .exp-title { font-weight: bold; color: var(--text-blue); }
+    .exp-org { color: var(--text-gray); font-size: 14px; }
+    /* --- Projects --- */
+    .proj-header { color: #69e9ff; font-size: 1.1rem; }
+    .proj-note { color: var(--text-gray); font-size: 14px; }
+    .proj-card {
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      background: #191c22;
+      margin-bottom: 34px;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      max-width: 760px;
+    }
+    .proj-topbar {
+      background: var(--accent);
+      color: #222;
+      font-weight: 700;
+      padding: 7px 21px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+    .proj-tabs {
+      display: flex;
+      padding: 0 21px;
+      border-bottom: 1px solid var(--border-dark);
+      background: #22242b;
+      gap: 24px;
+    }
+    .proj-tabs .tab { 
+      color: var(--text-gray);
+      font-weight: 700;
+      margin-right: 18px;
+      padding: 12px 0px 6px 0px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .proj-tabs .tab.active {
+      color: var(--text-main);
+      border-bottom: 2px solid var(--accent);
+    }
+    .proj-content-wrap {
+      display: flex;
+      padding: 7px 21px 21px 21px;
+      align-items: flex-start;
+      gap: 23px;
+    }
+    .proj-readme {
+      min-width: 210px;
+      max-width: 260px;
+      background: #16181f;
+      border-radius: 6px;
+      color: var(--text-gray);
+      font-size: 15px;
+      padding: 13px;
+      box-shadow: 0 0 0.5px #000b;
+    }
+    .proj-content {
+      flex: 1;
+    }
+    .proj-btns { margin-top: 15px; }
+    .proj-btn {
+      color: var(--text-blue);
+      background: #191c22;
+      padding: 7px 19px;
+      margin-right: 9px;
+      border-radius: 8px;
+      border: 1px solid #232b3d;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.14s;
+    }
+    .proj-btn:hover { background: #181e25; }
+    @media (max-width: 900px) {
+      .about-sidebar { display: none; }
+    }
+    @media (max-width: 650px) {
+      .sidebar { display: none; }
+      .main-content { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-window">
+  <!-- Top Bar -->
+  <div class="topbar">
+    <span class="logo">D.</span>
+    <span class="breadcrumb" id="breadcrumb">Home</span>
+    <span class="window-controls">
+      <span></span><span></span><span></span>
+    </span>
+  </div>
+  <!-- Layout -->
+  <div class="layout">
+    <aside class="sidebar">
+      <ul class="nav">
+        <li class="active" onclick="setPage('home')">
+          <span class="icon">🏠</span> Home
+        </li>
+        <li onclick="setPage('about')">
+          <span class="icon">📝</span> About
+        </li>
+        <li onclick="setPage('experience')">
+          <span class="icon">⭐</span> Experience
+        </li>
+        <li onclick="setPage('projects')">
+          <span class="icon">💻</span> Projects
+        </li>
+        <li onclick="setPage('contact')">
+          <span class="icon">📞</span> Contact
+        </li>
+        <li onclick="setPage('blog')">
+          <span class="icon">🌐</span> Blog
+        </li>
+      </ul>
+    </aside>
+    <main class="main-content" id="main-content">
+      <!-- Default: Home Page -->
+      <div id="page-home">
+        <div class="home-title" style="margin-top:60px;">
+          Hello! I am <br /><span style="font-size:45px;line-height:1.2;">Durgesh Kumar</span>
+        </div>
+        <div class="home-sub">Web Developer</div>
+        <div class="prompt-label">// write a code below to continue</div>
+        <div class="cmd">&gt; whois</div>
+        <div class="hover-get-code">
+          <span class="dot"></span>
+          Hover to get the code
+          <div class="hover-tooltip">
+            <a class="hover-btn" href="#">Download CV</a>
+            <a class="hover-btn" href="#">My Blog Site</a>
+          </div>
+        </div>
+      </div>
+      <!-- About Page -->
+      <div id="page-about" style="display:none; position: relative;">
+        <div class="about-code-block">
+<span style="color:var(--text-gray);">const <span class="keyword">About</span> = () =&gt; (</span><br/>
+<span style="color:var(--text-gray);">  &lt;p&gt;</span><br/>
+&nbsp;&nbsp;What could be more fascinating than the fact that there is always more code to write?<br/><br/>
+&nbsp;&nbsp;My areas of expertise include, in addition to technical skills, the ability to swiftly<br/>
+&nbsp;&nbsp;grasp new technologies, collaboration and commitment, problem-solving, responsive design,<br/>
+&nbsp;&nbsp;and SEO-friendly websites. I love implementing responsive design concepts, and it's<br/>
+&nbsp;&nbsp;incredibly thrilling to see my online pages shrink and yet look amazing on mobile displays.<br/>
+&nbsp;&nbsp;As a developer, I believe that one should never stop learning, and that is the <br/>
+&nbsp;&nbsp;beauty of programming: no matter how much you learn, you will always know only<br/>
+&nbsp;&nbsp;a drop in an ocean. There is always more to learn, more problems to solve, and more to build.<br/>
+&nbsp;&nbsp;And for that, I am grateful and thrilled.<br/><br/>
+&nbsp;&nbsp;Take a look around my website and feel free to reach out to me through my contact page or<br/>
+&nbsp;&nbsp;connect with me through my social media links. I hope to make many new connections on my<br/>
+&nbsp;&nbsp;programming journey!<br/>
+<span style="color:var(--text-gray);">  &lt;/p&gt;<br/>)</span>
+        </div>
+        <div class="about-sidebar">
+          <div class="file-tree">
+            <ul>
+              <li><span class="label">▸ Frameworks</span>
+                <ul>
+                  <li class="file"><span>ReactJS</span></li>
+                  <li class="file"><span>NextJS</span></li>
+                  <li class="file"><span>TailwindCSS</span></li>
+                  <li class="file"><span>Firebase</span></li>
+                  <li class="file"><span>NodeJS</span></li>
+                  <li class="file"><span>ExpressJS</span></li>
+                  <li class="file"><span>MongoDB</span></li>
+                </ul>
+              </li>
+              <li><span class="label">▸ Tools</span>
+                <ul>
+                  <li class="file"><span>GIT</span></li>
+                  <li class="file"><span>MDX</span></li>
+                  <li class="file"><span>Cloudinary CDN</span></li>
+                  <li class="file"><span>Mail Chimp</span></li>
+                  <li class="file"><span>Framer Motion</span></li>
+                  <li class="file"><span>Linux</span></li>
+                  <li class="file"><span>Vercel</span></li>
+                </ul>
+              </li>
+              <li><span class="label">▸ Languages</span>
+                <ul>
+                  <li class="file"><span>JavaScript (ES6)</span></li>
+                  <li class="file"><span>C++</span></li>
+                </ul>
+              </li>
+              <li><span class="label">▸ Soft Skills</span>
+                <ul>
+                  <li class="file"><span>SEO</span></li>
+                  <li class="file"><span>Blogging</span></li>
+                  <li class="file"><span>Leadership</span></li>
+                  <li class="file"><span>Content Writing</span></li>
+                  <li class="file"><span>Time Management</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Experience Page -->
+      <div id="page-experience" style="display:none;">
+        <div class="exp-header" style="margin-bottom:8px;">
+          <span style="color:#53b0fd;">// My past experiences :</span>
+        </div>
+        <div class="exp-note">(Click on individual experience to get details)</div>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-range">2020 - 2024</div>
+            <div>
+              <div class="exp-title">KALING INSTITUTE OF INDUSTRIAL TECHNOLOGY</div>
+              <div class="exp-org">Computer Science and Engineering</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-range">Aug 2022 - Present</div>
+            <div>
+              <div class="exp-title">9AI</div>
+              <div class="exp-org">Frontend Web Developer</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-range">Aug 2021 - Present</div>
+            <div>
+              <div class="exp-title">KIIT E-CELL</div>
+              <div class="exp-org">Executive</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-range">Jan 2022 - Jun 2022</div>
+            <div>
+              <div class="exp-title">SAND LABS</div>
+              <div class="exp-org">Developer Champ</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-range">Dec 2021 - Present</div>
+            <div>
+              <div class="exp-title">POSTMAN</div>
+              <div class="exp-org">Postman Student Expert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Projects Page -->
+      <div id="page-projects" style="display:none;">
+        <div class="proj-header">// My top projects :</div>
+        <div class="proj-note">(Hover on readme screen to see small visual of the project)<br/>(Click on Readme.md to see the readme file of the project)</div>
+        <!-- Project 1 -->
+        <div class="proj-card">
+          <div class="proj-topbar">OurWeb - Personal Blog</div>
+          <div class="proj-tabs">
+            <span class="tab active">Description</span>
+            <span class="tab">Features Implemented</span>
+            <span class="tab">Tech Used</span>
+          </div>
+          <div class="proj-content-wrap">
+            <div class="proj-readme">
+              <span style="font-size:14px;color:var(--accent);">Readme.md</span>
+              <br/><img src="https://via.placeholder.com/200x100?text=Screenshot" alt="screenshot" style="width:100%;border-radius:4px;margin-top:5px;">
+              <div style="font-size:13px;margin-top:12px;">
+                <span style="color:var(--text-gray)">37 Commits</span>
+              </div>
+            </div>
+            <div class="proj-content">
+              Ourweb is my personal blog website which I made from scratch. I <br/>
+              share valuable articles on topics that I come across during my coding journey. 
+              This site is fully SEO optimized with tons of features.
+              <div class="proj-btns">
+                <a class="proj-btn" href="#">Live</a>
+                <a class="proj-btn" href="#">Github</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="proj-card">
+          <div class="proj-topbar">Schedule a Demo</div>
+          <div class="proj-tabs">
+            <span class="tab active">Description</span>
+            <span class="tab">Features Implemented</span>
+            <span class="tab">Tech Used</span>
+          </div>
+          <div class="proj-content-wrap">
+            <div class="proj-readme">
+              <span style="font-size:14px;color:var(--accent);">Readme.md</span>
+              <br/>
+              <pre style="margin:0;padding:0;color:var(--text-main);background:none;border:none;">
+9 Commits 
+
+/**
+* Custom calendar component from scratch
+* Time picker
+* Personal info input with validation check
+* NextJS, Tailwind
+*/</pre>
+            </div>
+            <div class="proj-content">
+              This is a Custom Schedule Calendar component for scheduling a demo. 
+              We may choose a date and time, then enter our personal details and book our demo...
+              <div class="proj-btns">
+                <a class="proj-btn" href="#">Live</a>
+                <a class="proj-btn" href="#">Github</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+  // Handle 'routing' between pages and update sidebar/breadcrumb
+  const pages = ["home", "about", "experience", "projects", "contact", "blog"];
+  function setPage(name) {
+    pages.forEach(id => {
+      document.getElementById(`page-${id}`)?.style && (document.getElementById(`page-${id}`).style.display = id === name ? "" : "none");
+    });
+    document.querySelectorAll('.nav li').forEach((li, ix) => {
+      li.classList.toggle('active', pages[ix] === name);
+    });
+    document.getElementById('breadcrumb').innerHTML = name === "home" ? "Home" : `Home<span style="color:#888"> &nbsp;/&nbsp; </span>${capitalize(name)}`;
+  }
+  function capitalize(str){ return str[0].toUpperCase() + str.slice(1); }
+</script>
+</body>
+</html>
