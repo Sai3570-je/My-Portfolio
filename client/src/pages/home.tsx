@@ -4,43 +4,12 @@ export default function Home() {
   const [showHoverMenu, setShowHoverMenu] = useState(false);
 
   const handleDownloadCV = () => {
-    // Create a CV download link with actual resume content
-    const cvContent = `SAI PANINDRA PECHETTI
-+91-7095088395 | trainwithjk26@gmail.com | https://www.linkedin.com/in/sai-088083344/
-
-EDUCATION
-Bachelor of Technology in Electronics and Communication Engineering (Expected: May 2026)
-Raghu Institute of Technology | CGPA: 7.75/10
-
-SKILLS
-Languages: Python, Java, JavaScript, HTML, CSS, SQL
-Web/Tools: React.js, Node.js, Express.js, MongoDB, Git, Linux, Tableau
-AI/ML: Machine Learning, Artificial Intelligence, NLP
-Core CS: Data Structures and Algorithms, Object-Oriented Programming (OOP)
-Technologies: Cloud Computing, Embedded Systems, IoT, Cyber Security, VLSI Design
-
-EXPERIENCE
-Slash Mark - Full Stack Web Development (Current)
-YBI Foundation - AI & ML with Data Science (Dec 2024 – Feb 2025)
-Data Pro - Java Full Stack Developer (Aug 2023 – Oct 2023)
-
-PROJECTS
-• Smart Traffic Management System using IoT & AI
-• Character-Level GPT Language Model using PyTorch
-
-CERTIFICATIONS
-• Developer and Technology Job Simulation – Accenture
-• Data Visualisation: Empowering Business with Effective Insights – TATA
-• Python for Data Science – IBM
-• AI for Beginners – HP Foundation`;
-    
-    const blob = new Blob([cvContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
+    // Download the actual PDF resume
     const link = document.createElement('a');
-    link.href = url;
-    link.download = 'Sai_Panindra_Pechetti_CV.txt';
+    link.href = '/Sai_Panindra_Pechetti_Resume.pdf';
+    link.download = 'Sai_Panindra_Pechetti_Resume.pdf';
+    link.target = '_blank';
     link.click();
-    URL.revokeObjectURL(url);
   };
 
   const handleOpenBlog = () => {

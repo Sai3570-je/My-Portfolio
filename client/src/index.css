@@ -65,6 +65,28 @@
     background-color: var(--bgBlackSec);
     color: var(--tWhiteSec);
     font-family: 'Fira Mono', monospace;
+    font-display: swap;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Optimize images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Lazy loading support */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  img[loading="lazy"].loaded {
+    opacity: 1;
   }
 }
 

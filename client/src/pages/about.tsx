@@ -1,10 +1,43 @@
+import { 
+  FaFolder, 
+  FaPython, 
+  FaJava, 
+  FaJs, 
+  FaHtml5, 
+  FaCss3Alt, 
+  FaDatabase,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaLinux,
+  FaCloud,
+  FaShieldAlt,
+  FaRobot,
+  FaBrain,
+  FaTools,
+  FaVideo,
+  FaChartBar,
+  FaMicrochip
+} from 'react-icons/fa';
+import { 
+  SiExpress, 
+  SiMongodb, 
+  SiPytorch, 
+  SiFlask, 
+  SiArduino, 
+  SiRaspberrypi,
+  SiOpencv,
+  SiTableau
+} from 'react-icons/si';
+import { IoIosDocument } from 'react-icons/io';
+
 export default function About() {
   return (
-    <div className="min-h-screen bg-bgBlack text-tWhiteSec p-6">
+    <div className="min-h-screen bg-bgBlack text-tWhiteSec p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-tBlue mb-6">// About Me :</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-6">// About Me :</h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left side - Code block */}
           <div className="about-left">
             <div className="bg-gray-900 rounded-lg p-6 font-mono text-sm leading-relaxed">
@@ -62,32 +95,32 @@ export default function About() {
               {/* Programming Languages */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 text-tWhiteSec font-medium mb-3">
-                  <span>📂</span>
+                  <FaFolder className="text-yellow-400" />
                   <span>Programming Languages</span>
                 </div>
                 <div className="ml-6 space-y-2">
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaPython className="text-blue-400 text-lg" />
                     <span>Python</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaJava className="text-red-500 text-lg" />
                     <span>Java</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaJs className="text-yellow-400 text-lg" />
                     <span>JavaScript</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaHtml5 className="text-orange-500 text-lg" />
                     <span>HTML5</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaCss3Alt className="text-blue-500 text-lg" />
                     <span>CSS3</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📄</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaDatabase className="text-green-400 text-lg" />
                     <span>SQL</span>
                   </div>
                 </div>
@@ -96,32 +129,32 @@ export default function About() {
               {/* Frameworks & Libraries */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 text-tWhiteSec font-medium mb-3">
-                  <span>📂</span>
+                  <FaFolder className="text-yellow-400" />
                   <span>Frameworks & Libraries</span>
                 </div>
                 <div className="ml-6 space-y-2">
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>⚛️</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaReact className="text-cyan-400 text-lg" />
                     <span>React.js</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🟢</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaNodeJs className="text-green-500 text-lg" />
                     <span>Node.js</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🚀</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiExpress className="text-gray-400 text-lg" />
                     <span>Express.js</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🍃</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiMongodb className="text-green-600 text-lg" />
                     <span>MongoDB</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🔥</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiPytorch className="text-orange-500 text-lg" />
                     <span>PyTorch</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🌐</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiFlask className="text-gray-300 text-lg" />
                     <span>Flask</span>
                   </div>
                 </div>
@@ -130,32 +163,32 @@ export default function About() {
               {/* AI/ML & IoT */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 text-tWhiteSec font-medium mb-3">
-                  <span>📂</span>
+                  <FaFolder className="text-yellow-400" />
                   <span>AI/ML & IoT</span>
                 </div>
                 <div className="ml-6 space-y-2">
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🤖</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaRobot className="text-purple-400 text-lg" />
                     <span>Machine Learning</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🧠</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaBrain className="text-pink-400 text-lg" />
                     <span>Artificial Intelligence</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📝</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <IoIosDocument className="text-blue-300 text-lg" />
                     <span>Natural Language Processing</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🔧</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiArduino className="text-teal-400 text-lg" />
                     <span>Arduino & Raspberry Pi</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🌐</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiRaspberrypi className="text-red-400 text-lg" />
                     <span>IoT Systems</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📹</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiOpencv className="text-green-400 text-lg" />
                     <span>OpenCV</span>
                   </div>
                 </div>
@@ -164,32 +197,32 @@ export default function About() {
               {/* Tools & Domains */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 text-tWhiteSec font-medium mb-3">
-                  <span>📂</span>
+                  <FaFolder className="text-yellow-400" />
                   <span>Tools & Domains</span>
                 </div>
                 <div className="ml-6 space-y-2">
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🔧</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaGitAlt className="text-orange-500 text-lg" />
                     <span>Git & GitHub</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🐧</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaLinux className="text-yellow-300 text-lg" />
                     <span>Linux</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>📊</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <SiTableau className="text-blue-400 text-lg" />
                     <span>Tableau</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>☁️</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaCloud className="text-sky-400 text-lg" />
                     <span>Cloud Computing</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>🔒</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaShieldAlt className="text-green-500 text-lg" />
                     <span>Cyber Security</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <span>💡</span>
+                  <div className="flex items-center gap-3 text-gray-300 hover:text-tBlue transition-colors">
+                    <FaMicrochip className="text-gray-400 text-lg" />
                     <span>VLSI Design</span>
                   </div>
                 </div>
