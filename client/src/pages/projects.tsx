@@ -4,14 +4,15 @@ export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   
   return (
-    <div className="max-w-7xl mx-auto">
-      <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// My top projects :</h2>
-      <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">
-        <span className="hidden sm:inline">(Hover on readme screen to see small visual of the project)</span>
-        <span className="sm:hidden">(Tap on projects to see details)</span>
-      </p>
-      
-      <div className="space-y-8">
+    <div className="w-full">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// My top projects :</h2>
+        <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">
+          <span className="hidden sm:inline">(Hover on readme screen to see small visual of the project)</span>
+          <span className="sm:hidden">(Tap on projects to see details)</span>
+        </p>
+        
+        <div className="space-y-6 sm:space-y-8">
         {/* Project 1: Smart Traffic Management System */}
         <div 
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
@@ -19,27 +20,30 @@ export default function Projects() {
           onMouseLeave={() => setHoveredProject(null)}
           onClick={() => setHoveredProject(hoveredProject === 'traffic' ? null : 'traffic')}
         >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
+          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
             <span className="mr-2">📁</span>
-            Smart Traffic Management System using IoT & AI
+            <span className="break-words">Smart Traffic Management System using IoT & AI</span>
           </div>
           
-          <div className="bg-gray-800 border-b border-gray-600 px-4 py-2 flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+          <div className="bg-gray-800 border-b border-gray-600 px-2 sm:px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-yellow-400">📄</span>
-              <span className="text-tWhiteSec">Description</span>
+              <span className="text-tWhiteSec hidden sm:inline">Description</span>
+              <span className="text-tWhiteSec sm:hidden">Desc</span>
             </div>
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-green-400">✨</span>
-              <span className="text-tWhiteSec">Features Implemented</span>
+              <span className="text-tWhiteSec hidden sm:inline">Features Implemented</span>
+              <span className="text-tWhiteSec sm:hidden">Features</span>
             </div>
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-blue-400">🔧</span>
-              <span className="text-tWhiteSec">Tech Used</span>
+              <span className="text-tWhiteSec hidden sm:inline">Tech Used</span>
+              <span className="text-tWhiteSec sm:hidden">Tech</span>
             </div>
           </div>
           
-          <div className="p-6 bg-gray-900">
+          <div className="p-3 sm:p-6 bg-gray-900">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <div className="mb-4">
@@ -95,27 +99,30 @@ export default function Projects() {
           onMouseLeave={() => setHoveredProject(null)}
           onClick={() => setHoveredProject(hoveredProject === 'gpt' ? null : 'gpt')}
         >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
+          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
             <span className="mr-2">📁</span>
-            Character-Level GPT Language Model using PyTorch
+            <span className="break-words">Character-Level GPT Language Model using PyTorch</span>
           </div>
           
-          <div className="bg-gray-800 border-b border-gray-600 px-4 py-2 flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+          <div className="bg-gray-800 border-b border-gray-600 px-2 sm:px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-yellow-400">📄</span>
-              <span className="text-tWhiteSec">Description</span>
+              <span className="text-tWhiteSec hidden sm:inline">Description</span>
+              <span className="text-tWhiteSec sm:hidden">Desc</span>
             </div>
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-green-400">✨</span>
-              <span className="text-tWhiteSec">Features Implemented</span>
+              <span className="text-tWhiteSec hidden sm:inline">Features Implemented</span>
+              <span className="text-tWhiteSec sm:hidden">Features</span>
             </div>
-            <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
               <span className="text-blue-400">🔧</span>
-              <span className="text-tWhiteSec">Tech Used</span>
+              <span className="text-tWhiteSec hidden sm:inline">Tech Used</span>
+              <span className="text-tWhiteSec sm:hidden">Tech</span>
             </div>
           </div>
           
-          <div className="p-6 bg-gray-900">
+          <div className="p-3 sm:p-6 bg-gray-900">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <div className="mb-4">
@@ -169,12 +176,12 @@ export default function Projects() {
           onMouseLeave={() => setHoveredProject(null)}
           onClick={() => setHoveredProject(hoveredProject === 'amazon' ? null : 'amazon')}
         >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
+          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
             <span className="mr-2">📁</span>
-            Amazon Clone - E-commerce Platform
+            <span className="break-words">Amazon Clone - E-commerce Platform</span>
           </div>
           
-          <div className="p-6 bg-gray-900">
+          <div className="p-3 sm:p-6 bg-gray-900">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <div className="mb-4">

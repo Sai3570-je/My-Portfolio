@@ -19,8 +19,6 @@ interface MobileNavProps {
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [location] = useLocation();
 
-  console.log('MobileNav render - isOpen:', isOpen);
-
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
@@ -46,12 +44,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  if (!isOpen) {
-    console.log('MobileNav not rendering - isOpen is false');
-    return null;
-  }
-
-  console.log('MobileNav rendering menu');
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] md:hidden">

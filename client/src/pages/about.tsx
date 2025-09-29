@@ -33,15 +33,15 @@ import { IoIosDocument } from 'react-icons/io';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-bgBlack text-tWhiteSec p-4 sm:p-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-6">// About Me :</h2>
+    <div className="w-full">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// About Me :</h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {/* Left side - Code block */}
           <div className="about-left">
-            <div className="bg-gray-900 rounded-lg p-6 font-mono text-sm leading-relaxed">
-              <pre className="text-gray-300">
+            <div className="bg-gray-900 rounded-lg p-3 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+              <pre className="text-gray-300 whitespace-pre">
                 <code>
                   <span className="text-purple-400">class</span> <span className="text-yellow-400">SaiPanindra</span> {'{'}
                   {'\n'}  <span className="text-purple-400">constructor</span>() {'{'}
@@ -87,7 +87,7 @@ export default function About() {
 
           {/* Right side - Skills tree */}
           <div className="about-right">
-            <div className="bg-gray-900 rounded-lg p-6">
+            <div className="bg-gray-900 rounded-lg p-3 sm:p-6">
               <div className="text-tBlue font-semibold mb-4 border-b border-gray-700 pb-2">
                 Skills & Technologies
               </div>

@@ -6,8 +6,6 @@ import MobileNav from "./mobile-nav";
 export default function Header() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  console.log('Header render - isMobileMenuOpen:', isMobileMenuOpen);
   
   const getPageTitle = (path: string) => {
     switch (path) {
