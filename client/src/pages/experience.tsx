@@ -8,9 +8,9 @@ export default function Experience() {
   };
   
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-tBlue mb-6">// My experiences :</h2>
-      <p className="text-gray-400 text-sm mb-8">(Click on individual experience to get details)</p>
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// My experiences :</h2>
+      <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">(Click on individual experience to get details)</p>
       
       <div className="space-y-6">
         <div 

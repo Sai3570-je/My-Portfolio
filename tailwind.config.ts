@@ -4,6 +4,22 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      'xs': '475px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      'mobileS': '320px',
+      'mobileM': '375px',
+      'mobileL': '425px',
+      'tablet': '768px',
+      'tabletS': '640px',
+      'laptop': '1024px',
+      'laptopL': '1440px',
+      'desktop': '2560px',
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",

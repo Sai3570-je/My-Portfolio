@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-tBlue mb-6">// Find me on :</h2>
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// Find me on :</h2>
       
       <div className="max-w-2xl">
         <div className="space-y-4">

@@ -11,8 +11,8 @@ export default function WindowFrame({ children }: WindowFrameProps) {
     <div className="min-h-screen bg-bgBlackSec">
       <Header />
       <Sidebar />
-      <div className="pt-[105px] md:pl-[200px] min-h-screen">
-        <div className="px-6 py-8">
+      <div className="pt-[76px] md:pt-[105px] md:pl-[200px] min-h-screen">
+        <div className="px-4 py-6 sm:px-6 sm:py-8">
           {children}
         </div>
       </div>

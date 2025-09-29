@@ -1,7 +1,7 @@
 export default function Blog() {
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-tBlue mb-6">// Blog posts :</h2>
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// Blog posts :</h2>
       
       <div className="space-y-6">
         <article className="border border-gray-600 rounded-lg p-6 hover:border-tBlue transition-colors">

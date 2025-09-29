@@ -4,9 +4,12 @@ export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-tBlue mb-6">// My top projects :</h2>
-      <p className="text-gray-400 text-sm mb-8">(Hover on readme screen to see small visual of the project)</p>
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// My top projects :</h2>
+      <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">
+        <span className="hidden sm:inline">(Hover on readme screen to see small visual of the project)</span>
+        <span className="sm:hidden">(Tap on projects to see details)</span>
+      </p>
       
       <div className="space-y-8">
         {/* Project 1: Smart Traffic Management System */}
@@ -14,6 +17,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('traffic')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'traffic' ? null : 'traffic')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -89,6 +93,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('gpt')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'gpt' ? null : 'gpt')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -162,6 +167,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('amazon')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'amazon' ? null : 'amazon')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -221,6 +227,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('netflix')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'netflix' ? null : 'netflix')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -279,6 +286,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('ai-chat')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'ai-chat' ? null : 'ai-chat')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -336,6 +344,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('gym')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'gym' ? null : 'gym')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
@@ -394,6 +403,7 @@ export default function Projects() {
           className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
           onMouseEnter={() => setHoveredProject('portfolio')}
           onMouseLeave={() => setHoveredProject(null)}
+          onClick={() => setHoveredProject(hoveredProject === 'portfolio' ? null : 'portfolio')}
         >
           <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
             <span className="mr-2">📁</span>
