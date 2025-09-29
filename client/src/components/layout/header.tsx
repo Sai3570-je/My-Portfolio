@@ -1,13 +1,11 @@
 import { useLocation } from "wouter";
 import { useState } from "react";
 import { Menu } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import MobileNav from "./mobile-nav";
 
 export default function Header() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
   
   const getPageTitle = (path: string) => {
     switch (path) {
