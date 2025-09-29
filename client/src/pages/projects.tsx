@@ -1,479 +1,198 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 
-export default function Projects() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  
+type Project = {
+  id: string;
+  title: string;
+  emoji: string;
+  description: string;
+  tags: string[];
+  previewTitle: string;
+  previewLines: string[];
+  fromGradient: string;
+  toGradient: string;
+  borderClass?: string;
+};
+
+const PROJECTS: Project[] = [
+  {
+    id: "traffic",
+    title: "Smart Traffic Management System using IoT & AI",
+    emoji: "🚦",
+    description:
+      "Built a smart traffic controller using Arduino, Raspberry Pi and ultrasonic sensors to detect vehicle density. Processed live camera feeds with OpenCV and adjusted signal timings using Flask + MQTT to reduce congestion.",
+    tags: ["Arduino", "Raspberry Pi", "OpenCV", "Flask", "MQTT", "IoT", "AI"],
+    previewTitle: "Smart Traffic System",
+    previewLines: ["Real-time Vehicle Detection", "AI Traffic Optimization", "Computer Vision Analysis"],
+    fromGradient: "from-blue-900",
+    toGradient: "to-gray-900",
+    borderClass: "border-blue-500",
+  },
+  {
+    id: "gpt",
+    title: "Character-Level GPT Language Model using PyTorch",
+    emoji: "🧠",
+    description:
+      "Custom GPT-style model that generates character-level Shakespearean-style text. Implemented transformers, self-attention, positional encoding and training loops in PyTorch.",
+    tags: ["PyTorch", "Transformers", "NLP", "Deep Learning", "Python"],
+    previewTitle: "AI Language Model",
+    previewLines: ['> "To be or not to be..."', "Character-Level Generation", "Transformer Architecture"],
+    fromGradient: "from-purple-900",
+    toGradient: "to-pink-900",
+    borderClass: "border-purple-500",
+  },
+  {
+    id: "amazon",
+    title: "Amazon Clone - E-commerce Platform",
+    emoji: "🛒",
+    description:
+      "Full-featured e-commerce website with product browsing, shopping cart, user authentication, and payment integration. Includes search, categories, and fully responsive design.",
+    tags: ["React.js", "Node.js", "MongoDB", "Express.js", "CSS3", "JavaScript"],
+    previewTitle: "E-commerce Platform",
+    previewLines: ["Product Catalog & Search", "Shopping Cart & Checkout", "User Authentication"],
+    fromGradient: "from-orange-900",
+    toGradient: "to-yellow-900",
+    borderClass: "border-orange-500",
+  },
+  {
+    id: "netflix",
+    title: "Netflix Clone - Streaming Platform UI",
+    emoji: "🎬",
+    description:
+      "Netflix-inspired streaming platform with movie browsing, trailer playback, search functionality, user profiles and TMDB API integration.",
+    tags: ["React.js", "TMDB API", "CSS3", "JavaScript", "Firebase"],
+    previewTitle: "Streaming Platform",
+    previewLines: ["Movie Carousel Interface", "Video Preview on Hover", "Responsive Dark Theme"],
+    fromGradient: "from-red-900",
+    toGradient: "to-black",
+    borderClass: "border-red-500",
+  },
+  {
+    id: "ai-chat",
+    title: "AI Assistant Chatbot",
+    emoji: "🤖",
+    description:
+      "Intelligent chatbot with natural language processing, context awareness, quick reply options, and AI API integration. Includes typing indicators and chat history.",
+    tags: ["React.js", "NLP", "AI APIs", "WebSocket", "Python"],
+    previewTitle: "AI Chatbot",
+    previewLines: ["Natural Conversations", "Real-time Responses"],
+    fromGradient: "from-cyan-900",
+    toGradient: "to-blue-900",
+    borderClass: "border-cyan-500",
+  },
+  {
+    id: "gym",
+    title: "Gym & Fitness Tracking App",
+    emoji: "💪",
+    description:
+      "Comprehensive fitness tracking app with workout planning, progress tracking, nutrition logging, and social challenges. Includes wearable device integration.",
+    tags: ["React Native", "HealthKit", "Charts.js", "Firebase", "Express.js"],
+    previewTitle: "Fitness Tracker",
+    previewLines: ["Workout Planning", "Progress Analytics", "Nutrition Tracking"],
+    fromGradient: "from-green-900",
+    toGradient: "to-emerald-900",
+    borderClass: "border-green-500",
+  },
+  {
+    id: "portfolio",
+    title: "Professional Portfolio Website",
+    emoji: "🌐",
+    description:
+      "A comprehensive portfolio website showcasing my projects, skills, and experience. Fully responsive with smooth animations and SEO optimization.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+    previewTitle: "Portfolio Website",
+    previewLines: ["Responsive Design", "Fast Performance", "Modern UI/UX"],
+    fromGradient: "from-indigo-900",
+    toGradient: "to-purple-900",
+    borderClass: "border-indigo-500",
+  },
+];
+
+export default function Projects(): JSX.Element {
+  const [activeProject, setActiveProject] = useState<string | null>(null);
+
+  const toggleProject = (id: string) => {
+    setActiveProject((prev) => (prev === id ? null : id));
+  };
+
   return (
-    <div className="w-full">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-tBlue mb-4 sm:mb-6">// My top projects :</h2>
-        <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">
-          <span className="hidden sm:inline">(Hover on readme screen to see small visual of the project)</span>
-          <span className="sm:hidden">(Tap on projects to see details)</span>
-        </p>
-        
-        <div className="space-y-6 sm:space-y-8">
-        {/* Project 1: Smart Traffic Management System */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('traffic')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'traffic' ? null : 'traffic')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            <span className="break-words">Smart Traffic Management System using IoT & AI</span>
-          </div>
-          
-          <div className="bg-gray-800 border-b border-gray-600 px-2 sm:px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-yellow-400">📄</span>
-              <span className="text-tWhiteSec hidden sm:inline">Description</span>
-              <span className="text-tWhiteSec sm:hidden">Desc</span>
-            </div>
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-green-400">✨</span>
-              <span className="text-tWhiteSec hidden sm:inline">Features Implemented</span>
-              <span className="text-tWhiteSec sm:hidden">Features</span>
-            </div>
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-blue-400">🔧</span>
-              <span className="text-tWhiteSec hidden sm:inline">Tech Used</span>
-              <span className="text-tWhiteSec sm:hidden">Tech</span>
-            </div>
-          </div>
-          
-          <div className="p-3 sm:p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Built a smart traffic controller using Arduino, Raspberry Pi, and ultrasonic sensors to detect vehicle density. 
-                    Analyzed live camera feeds with OpenCV and adjusted signal timings dynamically using Flask and MQTT. 
-                    Helped reduce traffic congestion by automating decisions based on real-time data.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Arduino</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Raspberry Pi</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">OpenCV</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Flask</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">MQTT</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">IoT</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">AI</span>
-                </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'traffic' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-blue-900 to-gray-900 rounded border border-blue-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🚦</div>
-                    <span className="text-blue-300 text-lg block mb-2 font-semibold">Smart Traffic System</span>
-                    <div className="text-xs text-blue-200 space-y-1">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span>Real-time Vehicle Detection</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span>AI Traffic Optimization</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                        <span>Computer Vision Analysis</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="max-w-7xl mx-auto px-4">
+      <h2 className="text-xl sm:text-2xl font-bold text-blue-400 mb-4 sm:mb-6">// My top projects :</h2>
+      <p className="text-gray-400 text-xs sm:text-sm mb-6 sm:mb-8">
+        <span className="hidden sm:inline">(Hover on project to preview)</span>
+        <span className="sm:hidden">(Tap project card to expand)</span>
+      </p>
 
-        {/* Project 2: Character-Level GPT */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('gpt')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'gpt' ? null : 'gpt')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            <span className="break-words">Character-Level GPT Language Model using PyTorch</span>
-          </div>
-          
-          <div className="bg-gray-800 border-b border-gray-600 px-2 sm:px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-yellow-400">📄</span>
-              <span className="text-tWhiteSec hidden sm:inline">Description</span>
-              <span className="text-tWhiteSec sm:hidden">Desc</span>
-            </div>
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-green-400">✨</span>
-              <span className="text-tWhiteSec hidden sm:inline">Features Implemented</span>
-              <span className="text-tWhiteSec sm:hidden">Features</span>
-            </div>
-            <div className="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded">
-              <span className="text-blue-400">🔧</span>
-              <span className="text-tWhiteSec hidden sm:inline">Tech Used</span>
-              <span className="text-tWhiteSec sm:hidden">Tech</span>
-            </div>
-          </div>
-          
-          <div className="p-3 sm:p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Developed a custom GPT-like model that generates Shakespearean-style text from scratch at the character level. 
-                    Implemented core transformer concepts like self-attention, positional encoding, and deep learning layers in PyTorch. 
-                    Demonstrates a strong understanding of how modern generative models function at the architecture level.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">PyTorch</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Transformers</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Self-Attention</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">NLP</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Deep Learning</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Python</span>
-                </div>
+      <div className="space-y-6 sm:space-y-8">
+        {PROJECTS.map((p) => {
+          const isActive = activeProject === p.id;
+          return (
+            <div
+              key={p.id}
+              className="border border-yellow-600 rounded-lg overflow-hidden hover:border-blue-400 transition-colors group cursor-pointer"
+              onMouseEnter={() => window.innerWidth > 768 && setActiveProject(p.id)}
+              onMouseLeave={() => window.innerWidth > 768 && setActiveProject(null)}
+              onClick={() => toggleProject(p.id)}
+            >
+              {/* Header */}
+              <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
+                <span className="mr-2">{p.emoji}</span>
+                {p.title}
               </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'gpt' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-purple-900 to-pink-900 rounded border border-purple-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🧠</div>
-                    <span className="text-purple-300 text-lg block mb-2 font-semibold">AI Language Model</span>
-                    <div className="text-xs text-purple-200 space-y-1 font-mono">
-                      <div className="bg-black/30 px-2 py-1 rounded text-green-300">
-                        &gt; "To be or not to be..."
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
-                        <span>Character-Level Generation</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span>Transformer Architecture</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Project 3: Amazon Clone */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('amazon')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'amazon' ? null : 'amazon')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-sm sm:text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            <span className="break-words">Amazon Clone - E-commerce Platform</span>
-          </div>
-          
-          <div className="p-3 sm:p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Full-featured e-commerce website with product browsing, shopping cart, user authentication, 
-                    and payment integration. Includes search functionality, product categories, and responsive design 
-                    optimized for all devices. Built with modern web technologies and best practices.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">React.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Node.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">MongoDB</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Express.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">CSS3</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">JavaScript</span>
-                </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'amazon' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-orange-900 to-yellow-900 rounded border border-orange-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🛒</div>
-                    <span className="text-orange-300 text-lg block mb-2 font-semibold">E-commerce Platform</span>
-                    <div className="text-xs text-orange-200 space-y-1">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span>Product Catalog & Search</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span>Shopping Cart & Checkout</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                        <span>User Authentication</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              {/* Content */}
+              <div className="p-4 sm:p-6 bg-gray-900">
+                <p className="text-gray-300 text-sm leading-relaxed mb-3">{p.description}</p>
 
-        {/* Project 4: Netflix Clone */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('netflix')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'netflix' ? null : 'netflix')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            Netflix Clone - Streaming Platform UI
-          </div>
-          
-          <div className="p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Netflix-inspired streaming platform with movie browsing, trailer playback, and responsive design. 
-                    Features dynamic content carousels, hover effects, search functionality, and user profiles. 
-                    Integrated with TMDB API for real movie data and modern UI animations.
-                  </p>
-                </div>
-                
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">React.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">TMDB API</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">CSS3</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">JavaScript</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Firebase</span>
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-1 bg-blue-900/20 text-blue-400 text-xs rounded whitespace-nowrap"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'netflix' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-red-900 to-black rounded border border-red-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🎬</div>
-                    <span className="text-red-300 text-lg block mb-2 font-semibold">Streaming Platform</span>
-                    <div className="text-xs text-red-200 space-y-1">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                        <span>Movie Carousel Interface</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span>Video Preview on Hover</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span>Responsive Dark Theme</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Project 5: AI Assistant Chatbot */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('ai-chat')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'ai-chat' ? null : 'ai-chat')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            AI Assistant Chatbot
-          </div>
-          
-          <div className="p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Intelligent chatbot with natural language processing capabilities. Features real-time conversation, 
-                    context awareness, quick reply options, and integration with AI APIs. Includes typing indicators, 
-                    message history, and responsive chat interface optimized for both desktop and mobile.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">React.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">NLP</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">AI APIs</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">WebSocket</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Python</span>
-                </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'ai-chat' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-cyan-900 to-blue-900 rounded border border-cyan-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🤖</div>
-                    <span className="text-cyan-300 text-lg block mb-2 font-semibold">AI Chatbot</span>
-                    <div className="text-xs text-cyan-200 space-y-1">
-                      <div className="bg-black/30 px-2 py-1 rounded text-green-300 text-xs">
-                        "How can I help you today?"
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span>Natural Conversations</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span>Real-time Responses</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Project 6: Gym & Fitness App */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('gym')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'gym' ? null : 'gym')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            Gym & Fitness Tracking App
-          </div>
-          
-          <div className="p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Comprehensive fitness tracking application with workout planning, progress monitoring, and nutrition logging. 
-                    Features exercise library with video demonstrations, custom workout routines, goal setting, 
-                    and social challenges. Includes wearable device integration and real-time health metrics.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">React Native</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">HealthKit</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Charts.js</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Firebase</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Express.js</span>
-                </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'gym' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-green-900 to-emerald-900 rounded border border-green-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">💪</div>
-                    <span className="text-green-300 text-lg block mb-2 font-semibold">Fitness Tracker</span>
-                    <div className="text-xs text-green-200 space-y-1">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                        <span>Workout Planning</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span>Progress Analytics</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span>Nutrition Tracking</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Project 7: Portfolio Website */}
-        <div 
-          className="border border-yellow-600 rounded-lg overflow-hidden hover:border-tBlue transition-colors group cursor-pointer"
-          onMouseEnter={() => setHoveredProject('portfolio')}
-          onMouseLeave={() => setHoveredProject(null)}
-          onClick={() => setHoveredProject(hoveredProject === 'portfolio' ? null : 'portfolio')}
-        >
-          <div className="bg-yellow-600 text-black p-3 font-bold text-lg flex items-center">
-            <span className="mr-2">📁</span>
-            Professional Portfolio Website
-          </div>
-          
-          <div className="p-6 bg-gray-900">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <div className="mb-4">
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    A comprehensive portfolio website showcasing my projects, skills, and experience. 
-                    Built with modern web technologies and designed with a focus on user experience and performance. 
-                    Features responsive design, smooth animations, and optimized for search engines.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">HTML5</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">CSS3</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">JavaScript</span>
-                  <span className="px-2 py-1 bg-tBlue/20 text-tBlue text-xs rounded">Responsive Design</span>
-                </div>
-                
-                <div className="flex gap-2 mt-4">
-                  <a 
-                    href="https://sai3570-je.github.io/Sai-Portfolio/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-tBlue/20 text-tBlue rounded hover:bg-tBlue/30 transition-colors text-sm"
+                {/* Preview Section */}
+                <div
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    isActive ? "max-h-72 opacity-100 mt-4" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div
+                    className={`rounded border ${p.borderClass ?? "border-blue-500"} flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br ${p.fromGradient} ${p.toGradient} h-48`}
                   >
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-              
-              <div className={`transition-opacity duration-300 ${hoveredProject === 'portfolio' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="w-full h-48 bg-gradient-to-br from-indigo-900 to-purple-900 rounded border border-indigo-500 flex flex-col items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-2xl mb-2">🌐</div>
-                    <span className="text-indigo-300 text-lg block mb-2 font-semibold">Portfolio Website</span>
-                    <div className="text-xs text-indigo-200 space-y-1">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span>Responsive Design</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span>Fast Performance</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
-                        <span>Modern UI/UX</span>
+                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="relative z-10 text-center px-3">
+                      <div className="text-2xl mb-2">{p.emoji}</div>
+                      <span className="text-lg block mb-2 font-semibold text-white/90">
+                        {p.previewTitle}
+                      </span>
+
+                      <div className="text-xs text-white/70 space-y-1">
+                        {p.previewLines.map((line, i) => (
+                          <div key={i} className="flex items-center justify-center gap-2">
+                            <div
+                              className={`w-2 h-2 rounded-full animate-pulse ${
+                                i % 3 === 0
+                                  ? "bg-green-400"
+                                  : i % 3 === 1
+                                  ? "bg-yellow-400"
+                                  : "bg-red-400"
+                              }`}
+                            />
+                            <span>{line}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
+          );
+        })}
       </div>
     </div>
   );

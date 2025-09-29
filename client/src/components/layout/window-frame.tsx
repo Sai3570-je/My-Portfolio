@@ -8,11 +8,11 @@ interface WindowFrameProps {
 
 export default function WindowFrame({ children }: WindowFrameProps) {
   return (
-    <div className="min-h-screen bg-bgBlackSec">
+    <div className="min-h-screen bg-bgBlackSec overflow-x-hidden">
       <Header />
       <Sidebar />
-      <div className="pt-[76px] md:pt-[105px] md:pl-[200px] min-h-screen">
-        <div className="px-4 py-6 sm:px-6 sm:py-8">
+      <div className="pt-[76px] md:pt-[105px] md:pl-[200px] w-full max-w-full">
+        <div className="px-3 sm:px-6 py-4 sm:py-8">
           {children}
         </div>
       </div>
