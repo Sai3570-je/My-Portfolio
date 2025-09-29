@@ -40,17 +40,15 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   }, [isOpen]);
 
   return (
-    <>
+    <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'} md:hidden`}>
       {/* Backdrop */}
       <div 
-        className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className="absolute inset-0 bg-black/50"
         onClick={onClose}
       />
       
-      {/* Mobile Navigation */}
-      <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-bgBlack border-l border-black/30 z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+      {/* Mobile Navigation Panel */}
+      <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-bgBlack border-l border-black/30 transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         {/* Header */}
@@ -59,13 +57,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <button
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-bgBlackSec transition-colors"
+            type="button"
           >
             <X size={20} className="text-gray-400" />
           </button>
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 py-4">
+        <nav className="py-4">
           {navigationItems.map((item) => {
             const isActive = location === item.path;
             const Icon = item.icon;
@@ -89,12 +88,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-black/30">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-black/30">
           <p className="text-xs text-gray-500 text-center">
             Sai Panindra Pechetti
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

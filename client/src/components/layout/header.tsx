@@ -56,8 +56,10 @@ export default function Header() {
         
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsMobileMenuOpen(true)}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="flex md:hidden items-center justify-center p-2 rounded-lg hover:bg-bgBlack transition-colors"
+          type="button"
+          aria-label="Toggle mobile menu"
         >
           <Menu size={20} className="text-tWhiteSec" />
         </button>
